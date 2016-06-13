@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug">
+	<Properties>
+		<Property name="log-path">/media/mj/DATA/log/quizzoda-log</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="file-log" fileName="${log-path}/quizzify.debug.log" filePattern="${log-path}/quizzify.debug.%d{dd-MM-yyyy}.log">
+			<PatternLayout>
+				<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%t] [%-5level] %c{1} - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+			</Policies>
+		</RollingFile>
+		<RollingFile name="error-log" fileName="${log-path}/quizzify.error.log" filePattern="${log-path}/quizzify.error.%d{dd-MM-yyyy}.log">
+			<PatternLayout>
+				<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%t] [%-5level] %c{1} - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+			</Policies>
+		</RollingFile>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss.SSS} [%t] [%-5level] %c{1} - %msg%n"/>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="debug" additivity="false">
+			<!-- 
+			<appender-ref ref="console"/>
+			-->
+			<appender-ref ref="file-info-log" level="info"/>
+			<appender-ref ref="file-log" level="debug"/>
+			<appender-ref ref="error-log" level="error"/>
+		</Root>
+	</Loggers>
+</Configuration>

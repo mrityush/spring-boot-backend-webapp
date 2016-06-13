@@ -1,0 +1,81 @@
+buildscript {
+    ext {
+        springBootVersion = '1.3.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+
+
+war {
+    baseName = 'quizzoda'
+    version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    scalaVersion = '2.10'
+    metricsVersion = '2.2.0'
+    springIntegrationVersion = '4.0.3.RELEASE'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://maven.ow2.org/maven2/"
+    }
+    maven { url "http://maven.ow2.org/maven2-snapshot" }
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '1.3.5.RELEASE'
+
+    compile("org.springframework.boot:spring-boot-starter-groovy-templates")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile('mysql:mysql-connector-java:5.1.6')
+    compile("net.sf.dozer:dozer:5.5.1")
+    compile("net.sf.dozer:dozer-spring:5.5.1")
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile("com.mangofactory:swagger-springmvc:1.0.2") {
+        exclude module: "slf4j-log4j12"
+    }
+
+    compile("org.springframework.boot:spring-boot-starter-amqp")
+    //compile("org.codehaus.jackson:jackson-mapper-asl:1.5.0")
+    providedRuntime("org.eclipse.jetty:jetty-server:9.3.2.v20150730")
+
+//    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+
+eclipse {
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+springBoot {
+    mainClass = "com.src.main.QuizApplication"
+}

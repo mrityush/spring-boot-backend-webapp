@@ -1,0 +1,12 @@
+spring:
+  data:
+      mongodb:
+            uri: mongodb://mongo.fameplus.com/famePlus_prod
+  rabbitmq:
+    virtual-host: fameplus_prod
+    username: guest
+    password: guest
+    host: rabbitmq.livfame.com
+    port: 5672
+
+hazelcast.server.address=hazelcast.livfame.com

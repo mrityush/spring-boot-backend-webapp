@@ -1,0 +1,36 @@
+spring:
+  data:
+      mongodb:
+            uri: mongodb://qa-mongo.livfame.com/famePlus_qa
+  rabbitmq:
+       virtual-host: fameplus_qaReplica
+       username: fame_qa
+       password: FameQA@321
+       host: qa-rabbitnew.livfame.com
+       port:  5672
+       addresses: qa-rabbitnew.livfame.com,qa-rabbitnew1.livfame.com,qa-rabbitnew2.livfame.com
+
+  datasource.url: jdbc:mysql://qa-db.livfame.com:3306/fameMonetization_qa
+  datasource.username: fame
+  datasource.password: famedefault
+  datasource.driverClassName: com.mysql.jdbc.Driver
+  datasource.maxActive: 10
+  datasource.max-idle: 4
+  datasource.min-idle: 2
+  datasource.test-while-idle:  true
+  datasource.test-on-borrow: true
+  datasource.validation-query: SELECT 1
+  datasource.time-between-eviction-runs-millis:  60000
+  datasource.min-evictable-idle-time-millis: 300000
+  jpa.hibernate.ddl-auto: validate
+
+server:
+  port: 8060
+
+hazelcast.server.address: qa-hazelcast.livfame.com
+
+authentication:
+  google.clientId: 349231826760-0lvs8lt6lrbsa8p86pp788tsee6nfbqr.apps.googleusercontent.com
+  google.clientSecret: zCHOtBCsLJEV-vrMLpZ1eFbj
+
+spring.profiles.active: qa

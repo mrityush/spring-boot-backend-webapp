@@ -1,0 +1,15 @@
+spring:
+  data:
+      mongodb:
+            uri: mongodb://uat-mongo.fameplus.com/famePlus_uat
+  rabbitmq:
+    virtual-host: fameplus_uat
+    username: guest
+    password: guest
+    host: uat-mq.livfame.com
+    port: 5672
+
+server:
+  port: 8080
+
+hazelcast.server.address=uat-hazelcast.livfame.com

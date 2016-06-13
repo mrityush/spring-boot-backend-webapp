@@ -1,0 +1,12 @@
+spring:
+  data:
+      mongodb:
+            uri: mongodb://localhost/quizzoda_dev
+
+      datasource.url: jdbc:mysql://localhost:3306/quizzoda
+      datasource.username: root
+      datasource.password: igdefault
+      datasource.driverClassName: com.mysql.jdbc.Driver
+
+server:
+  port: 8081
